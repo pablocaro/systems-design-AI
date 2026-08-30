@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Token Demo — MOD.SYSTEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <h1>Mod.System — Token Demo</h1>
+      <p class="sub">Four components, one accent token. Flip the switch.</p>
+      <div class="toggle" id="themeToggle">
+        <button data-theme="signal" class="active">SIGNAL</button>
+        <button data-theme="alt">ALT</button>
+      </div>
+    </div>
+    <div class="readout">
+      <div class="row"><span>ACCENT</span><span id="rAccent">#FF5A1F</span></div>
+      <div class="row"><span>RADIUS</span><span>0px</span></div>
+      <div class="row"><span>SPACE-UNIT</span><span>8px</span></div>
+      <div class="row"><span>THEME</span><span id="rTheme">SIGNAL</span></div>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <div class="module">
+      <div class="mod-label">MOD.01 — BUTTON</div>
+      <button class="btn">Primary action</button>
+      <button class="btn secondary">Secondary</button>
+    </div>
+
+    <div class="module">
+      <div class="mod-label">MOD.02 — INPUT</div>
+      <div class="field">
+        <label for="demoInput">PROJECT NAME</label>
+        <input id="demoInput" type="text" placeholder="mod.system">
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="mod-label">MOD.03 — CARD</div>
+      <div class="card">
+        <span class="tag">Token</span>
+        <h3>Design tokens</h3>
+        <p>Named values for color, space, and type — the single source every component below reads from.</p>
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="mod-label">MOD.04 — BADGE</div>
+      <div class="badges">
+        <span class="badge on">Active</span>
+        <span class="badge">Draft</span>
+        <span class="badge">Archived</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Every color you just saw change traces back to one variable: <code>--color-accent</code>.
+    Source tokens live in <code>tokens/tokens.json</code>; <code>styles.css</code> mirrors them as CSS custom properties.
+  </footer>
+
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('#themeToggle button');
+  const rAccent = document.getElementById('rAccent');
+  const rTheme = document.getElementById('rTheme');
+
+  const themes = {
+    signal: { hex: '#FF5A1F', label: 'SIGNAL' },
+    alt:    { hex: '#2F6F5E', label: 'ALT' }
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      document.documentElement.setAttribute('data-theme', theme === 'signal' ? '' : theme);
+      buttons.forEach(b => b.classList.toggle('active', b === btn));
+      rAccent.textContent = themes[theme].hex;
+      rTheme.textContent = themes[theme].label;
+    });
+  });
+</script>
+
+</body>
+</html>
