@@ -187,6 +187,7 @@ h1 {
   border: 1px solid var(--color-ink);
   padding: var(--space-sm);
   background: var(--color-panel);
+  border-radius: var(--radius-lg);
 }
 
 .card .tag {
