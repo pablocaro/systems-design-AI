@@ -1,0 +1,251 @@
+/* ==========================================================
+   These custom properties are hand-mirrored from tokens/tokens.json.
+   In a real pipeline, a tool like Style Dictionary reads that JSON
+   and generates this block for you — nothing below is invented,
+   it's just the same values in a form CSS can consume.
+   ========================================================== */
+
+:root {
+  --color-ink: #17181C;
+  --color-paper: #E7E4DA;
+  --color-panel: #DAD6C8;
+  --color-line: #B7B1A0;
+  --color-signal: #FF5A1F;
+  --color-alt: #2F6F5E;
+
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+
+  --radius-none: 0px;
+  --radius-sm: 2px;
+
+  --font-display: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+
+  /* the one token every component below points to for its "brand" moment */
+  --color-accent: var(--color-signal);
+  --accent-label: 'SIGNAL / #FF5A1F';
+}
+
+/* Swapping ONE token here re-skins every component on the page.
+   This is the whole argument for tokens in one line of CSS. */
+[data-theme='alt'] {
+  --color-accent: var(--color-alt);
+  --accent-label: 'ALT / #2F6F5E';
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-sm) var(--space-lg);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.sub {
+  font-size: 13px;
+  color: #565248;
+  margin: 0;
+}
+
+/* ---- signature element: the token readout ---- */
+.readout {
+  font-family: var(--font-display);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: var(--space-xs) var(--space-sm);
+  min-width: 220px;
+  border: 1px solid var(--color-ink);
+}
+
+.readout .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 2px 0;
+  opacity: 0.85;
+}
+
+.readout .row span:last-child { color: var(--color-accent); }
+
+/* ---- theme toggle (also a component, also token-driven) ---- */
+.toggle {
+  display: inline-flex;
+  border: 1px solid var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  user-select: none;
+  margin-top: var(--space-xs);
+}
+
+.toggle button {
+  font: inherit;
+  letter-spacing: inherit;
+  border: none;
+  background: transparent;
+  color: var(--color-ink);
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.toggle button.active {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* ---- module grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--color-line);
+  border: 1px solid var(--color-line);
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.module {
+  background: var(--color-paper);
+  padding: var(--space-md);
+}
+
+.mod-label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #6B665A;
+  margin-bottom: var(--space-sm);
+}
+
+/* ---- components ---- */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-none);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--color-accent); border-color: var(--color-accent); }
+
+.btn.secondary {
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.btn.secondary:hover {
+  background: var(--color-accent);
+  color: var(--color-paper);
+  border-color: var(--color-accent);
+}
+
+.btn + .btn { margin-left: var(--space-xs); }
+
+.field { display: flex; flex-direction: column; gap: 6px; max-width: 260px; }
+
+.field label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: #565248;
+}
+
+.field input {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-none);
+  background: var(--color-panel);
+  outline: none;
+}
+
+.field input:focus { border-color: var(--color-accent); }
+
+.card {
+  border: 1px solid var(--color-ink);
+  padding: var(--space-sm);
+  background: var(--color-panel);
+}
+
+.card .tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  background: var(--color-accent);
+  color: var(--color-paper);
+  margin-bottom: var(--space-xs);
+}
+
+.card h3 { margin: 0 0 6px; font-size: 15px; }
+.card p { margin: 0; font-size: 13px; color: #4A473D; line-height: 1.5; }
+
+.badges { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.badge {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--color-ink);
+  padding: 4px 10px;
+}
+
+.badge.on {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-paper);
+}
+
+footer {
+  margin-top: var(--space-lg);
+  font-size: 12px;
+  color: #6B665A;
+  border-top: 1px solid var(--color-line);
+  padding-top: var(--space-sm);
+}
+
+footer code {
+  font-family: var(--font-display);
+  background: var(--color-panel);
+  padding: 1px 5px;
+}
