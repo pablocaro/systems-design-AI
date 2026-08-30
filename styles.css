@@ -1,29 +1,12 @@
 /* ==========================================================
-   These custom properties are hand-mirrored from tokens/tokens.json.
-   In a real pipeline, a tool like Style Dictionary reads that JSON
-   and generates this block for you — nothing below is invented,
-   it's just the same values in a form CSS can consume.
+   Token custom properties now live in tokens.css, generated
+   by Style Dictionary from tokens/tokens.json — see index.html
+   for the <link> that pulls it in before this file.
+   Everything below is component styling only: it reads tokens,
+   it never defines them.
    ========================================================== */
 
 :root {
-  --color-ink: #17181C;
-  --color-paper: #E7E4DA;
-  --color-panel: #DAD6C8;
-  --color-line: #B7B1A0;
-  --color-signal: #FF5A1F;
-  --color-alt: #2F6F5E;
-
-  --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 40px;
-
-  --radius-none: 0px;
-  --radius-sm: 2px;
-
-  --font-display: 'JetBrains Mono', monospace;
-  --font-body: 'Inter', sans-serif;
-
   /* the one token every component below points to for its "brand" moment */
   --color-accent: var(--color-signal);
   --accent-label: 'SIGNAL / #FF5A1F';
